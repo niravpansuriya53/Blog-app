@@ -1,0 +1,87 @@
+body{
+    margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+}
+  
+.sidebar {
+  margin-top: 80px;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #000201;
+  color: white;
+}
+
+.sidebar a:hover {
+  background-color: #7b7878;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+.sidebar div.author{
+    color: black;
+    padding-left: 20px;
+}
+.sidebar div.name{
+    color: red;
+}
+#title{
+    font-size: 70px;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    background-color:  #7b7878;
+    text-shadow: #f1f1f1;
+}
+.headr{
+   position: fixed;
+   top: 0;
+   left:0;
+   width: 100%;
+   z-index: 999px;
+   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+}
+.index_box{
+    text-shadow: #f1f1f1;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    margin-top: 20%;
+    margin-left:30%;
+    margin-right:30%;
+    background-image: url(bg_home.jpeg);
+}
