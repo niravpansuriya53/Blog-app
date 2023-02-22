@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %} <link rel="stylesheet" href="{% static 'base.css' %}"> {% endblock css %} 
+    {% block title %}  <title>Home</title> {% endblock title %}  <title>Home</title> 
+</head>
+<body>
+
+    <div class='headr'>
+      <h1 id="title">Welcome To Our Blog</h1>
+    </div>
+    <div class="sidebar">
+      <a class="active">Home</a>
+      <a href="#news">Blogs</a><br> 
+      <h1>Author</h1>
+      <div class='author'>
+        <a href="">Author1</a>
+        <a href="">Author2</a>
+        <a href="">Author3</a>  
+        <a href="">Author4</a>
+        <a href="">Author5</a>
+      </div><br><br>
+      <a href="">Login</a>
+      <a href="">Log out</a>
+    </div>
+    <div class="content">
+      {% block content %}
+      {% endblock content %}
+    </div>
+
+</body>
+
