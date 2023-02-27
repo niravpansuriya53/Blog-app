@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="index_box">
+  
+    <ul>
+        {% for author in object_list %}
+        <li> <a href=" "></a>{{ author.name}}</li>
+        {% endfor %}
+    </ul>
+    
+</div>
+
+{% endblock content %}
+

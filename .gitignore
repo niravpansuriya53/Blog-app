@@ -131,10 +131,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.DS_Store
+.DS_Store/
 media/
 *.pem
-
 
 # Collected Django Static files
 staticfiles/

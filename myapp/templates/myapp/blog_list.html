@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Blog List</title>
+{% endblock title %}
+
+
+{% block content %}
+<div id="page">
+    {% for blog in page_obj %}
+        <div id="list_of_blog">
+        <h1> {{blog.title}} </h1><hr>
+          <h3><a href=""></a>{{blog.author}}</h3> 
+          <h2>{{blog.created_at}}</h2>
+        </div>
+    {% endfor %}
+</div>
+<div>
+    <foote class="footer">
+        <span>
+            {% if page_obj.has_previous %}
+            <a  href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+            <span>
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </footer>
+
+</div>
+{% endblock content %}
+
