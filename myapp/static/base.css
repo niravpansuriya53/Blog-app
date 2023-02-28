@@ -1,7 +1,7 @@
 body{
-    margin: 0;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: larger;
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: larger;
 }
   
 .sidebar {
@@ -61,27 +61,61 @@ div.content {
     color: red;
 }
 #title{
-    font-size: 70px;
-    text-align: center;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    background-color:  #7b7878;
-    text-shadow: #f1f1f1;
+  font-size: 70px;
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  background-color:  #7b7878;
+  text-shadow: #f1f1f1;
 }
 .headr{
-   position: fixed;
-   top: 0;
-   left:0;
-   width: 100%;
-   z-index: 999px;
-   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left:0;
+  width: 100%;
+  z-index: 999px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
 }
 .index_box{
-    text-shadow: #f1f1f1;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
-    padding: 15px;
-    margin-top: 20%;
-    margin-left:30%;
-    margin-right:30%;
-    background-image: url(bg_home.jpeg);
+  text-shadow: #f1f1f1;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  margin-top: 20%;
+  margin-left:30%;
+  margin-right:30%;
+  background-image: url(bg_home.jpeg);
+}
+#login{
+  text-shadow: #f1f1f1;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  padding-left: 10px;
+  margin-top: 10%;
+  margin-left:30%;
+  margin-right:30%;
+}
+#register{
+  text-shadow: #f1f1f1;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  padding-left: 10px;
+  margin-top: 10%;
+  margin-left:30%;
+  margin-right:30%;
+}
+#list_of_blog{
+  text-shadow: #f1f1f1;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+  margin-top: 1%;
+  padding-left: 10px;
+  margin-left:10%;
+  margin-right:10%;
+}
+#page{
+margin-top: 10%;
+}
+.footer{
+   
+margin-bottom: 10px;
+
 }

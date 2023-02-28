@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Blog Upload</title>
+{% endblock title %}
+
+{% block static %}{% endblock static %}
+
+{% block content %}
+<div class="container py-5" id="login">
+    <h1>Blog Upload</h1>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p}}
+      
+      <button class="btn btn-primary" type="submit"><a href="{{get_absolute_url }}">Upload</a></button>
+    </form>
+</div>
+{% endblock content %}

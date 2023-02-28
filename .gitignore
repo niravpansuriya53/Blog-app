@@ -135,6 +135,5 @@ dmypy.json
 media/
 *.pem
 
-
 # Collected Django Static files
 staticfiles/
