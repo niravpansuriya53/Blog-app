@@ -4,51 +4,57 @@ from django.views.generic.list import ListView
 from myapp.form import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView
 from myapp.models import Author, Blog
+from django.contrib.auth.views import LoginView
+from django.urls import reverse
 
 
 # home page view
-class index(TemplateView):
+class IndexView(TemplateView):
     def get(self, request, *args, **kwargs):
         return render(request, "home.html")
 
 
 # register user
-def register_request(request):
-    if request.method == "POST":
+class RegisterView(View):
+    template_name = "register.html"
+
+    def get(self, request):
+        form = UserRegisterForm()
+        context = {"register_form": form}
+        return render(request, self.template_name, context)
+
+    def post(self, request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful.")
             return redirect("main:home")
-        messages.error(
-            request, "Unsuccessful registration. Invalid information.")
-    form = UserRegisterForm()
-    return render(request=request, template_name="register.html", context={"register_form": form})
-
-
-# login ser
-def login_request(request):
-    if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.info(request, f"You are now logged in as {username}.")
-                return redirect("main:home")
-            else:
-                messages.error(request, "Invalid username or password.")
         else:
-            messages.error(request, "Invalid username or password.")
-    form = AuthenticationForm()
-    return render(request=request, template_name="registration/login.html", context={"login_form": form})
+            messages.error(request, "Unsuccessful registration. Invalid information.")
+        context = {"register_form": form}
+        return render(request, self.template_name, context)
+
+
+# login user
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
+    redirect_authenticated_user = True
+    
+    def get_success_url(self):
+        return reverse('main:home')
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Invalid username or password.')
+        return super().form_invalid(form)
+
+    def form_valid(self, form):
+        messages.info(self.request, f'You are now logged in as {form.cleaned_data.get("username")}.')
+        return super().form_valid(form)
 
 
 # logout user
@@ -71,6 +77,6 @@ class BlogList(ListView):
     queryset = Blog.objects.order_by('-created_at')
 
 
-#L  ist of all Authoer detils 
+#List of all Authoer detils 
 class AuthorList(ListView):
     queryset = Author.objects.all()

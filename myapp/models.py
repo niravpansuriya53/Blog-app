@@ -11,6 +11,7 @@ class BaseModel(models.Model):
     
     class Meta:
         abstract = True 
+        
 #Author details model
 class Author(models.Model):
     name = models.CharField(max_length=30, null=False)
@@ -22,7 +23,7 @@ class Author(models.Model):
 
 # blog uploding model
 class Blog(BaseModel):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="author_name")
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="blogs")
     title = models.CharField(max_length=70)
     content = models.TextField()
 
