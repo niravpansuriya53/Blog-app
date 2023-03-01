@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Blog Upload</title>
+{% endblock title %}
+
+{% block static %}{% endblock static %}
+
+{% block content %}
+<div class="container py-5" id="login">
+    <h1>Comment</h1>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p}}
+      {{object.blog.id}}
+      
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock content %}

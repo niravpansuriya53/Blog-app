@@ -3,13 +3,12 @@ from django.views.generic.base import TemplateView, View
 from django.views.generic.list import ListView
 from myapp.form import UserRegisterForm
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
-from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView
-from myapp.models import Author, Blog
+from myapp.models import Author, Blog, Comments
 from django.contrib.auth.views import LoginView
 from django.urls import reverse
+from django.shortcuts import get_object_or_404  
 
 
 # home page view
@@ -80,3 +79,14 @@ class BlogList(ListView):
 #List of all Authoer detils 
 class AuthorList(ListView):
     queryset = Author.objects.all()
+
+
+class Comments(CreateView):
+    model = Comments
+    fields =['comment']
+    success_url='/blog/'  #it's used for temporary
+
+    def form_valid(self, form):
+        blog = get_object_or_404(Blog, pk=self.kwargs['pk'])
+        form.instance.blog = blog
+        return super().form_valid(form)
