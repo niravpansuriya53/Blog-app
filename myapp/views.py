@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView, View
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from myapp.form import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -80,3 +81,9 @@ class BlogList(ListView):
 #List of all Authoer detils 
 class AuthorList(ListView):
     queryset = Author.objects.all()
+
+
+#Blog details
+class BlogDetails(DetailView):
+    model= Blog
+
