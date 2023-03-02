@@ -66,19 +66,19 @@ class LogoutView(View):
         return redirect("main:home")
 
 
-# blod uploding
+# blog uploading
 class BlogPost(CreateView):
     model = Blog
     fields = ['author', 'title', 'content']
 
 
-# list od all blog
+# list of all blog
 class BlogList(ListView):
     paginate_by = 5
     queryset = Blog.objects.order_by('-created_at')
 
 
-#List of all Authoer detils 
+#List of all author
 class AuthorList(ListView):
     queryset = Author.objects.all()
 
@@ -86,4 +86,3 @@ class AuthorList(ListView):
 #Blog details
 class BlogDetails(DetailView):
     model= Blog
-
