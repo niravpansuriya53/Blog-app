@@ -5,42 +5,44 @@ from django.urls import reverse
 
 # base model
 class BaseModel(models.Model):
-    created_at = models.DateTimeField(default=django.utils.timezone.now())
-    updated_at = models.DateTimeField(default=django.utils.timezone.now())
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         abstract = True
 
 
 # Author details model
-class Author(models.Model):
+class Author(BaseModel):
     name = models.CharField(max_length=30, null=False)
-    brithdate = models.DateField()
+    birthdate = models.DateField()
     about_author = models.TextField()
 
     def __str__(self):
         return self.name
 
 
-# blog uploding model
+# blog uploading model
 class Blog(BaseModel):
-    author = models.ForeignKey(
-        Author, on_delete=models.CASCADE, related_name="blogs")
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="blogs")
     title = models.CharField(max_length=70)
     content = models.TextField()
 
     def __str__(self):
-        return self.title
+        return  f"{self.author} - {self.title}"
 
     def get_absolute_url(self):
         return reverse('main:bloglist')
 
 
-# comments upload
-class Comments(BaseModel):
-    blog = models.ForeignKey(
-        Blog, on_delete=models.CASCADE, related_name="blog")
+# comment upload
+class Comment(BaseModel):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="blog")
     comment = models.TextField()
 
-    # def get_absolute_url(self):
-    #     pass
+    def __str__(self):
+        return f"{self.blog.author} - {self.blog.title}  "
+    
+    def get_absolute_url(self):
+    #     return reverse("main:blogdetails")
+        pass

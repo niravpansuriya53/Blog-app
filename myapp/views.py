@@ -5,7 +5,7 @@ from myapp.form import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.views.generic.edit import CreateView
-from myapp.models import Author, Blog, Comments
+from myapp.models import Author, Blog, Comment
 from django.contrib.auth.views import LoginView
 from django.urls import reverse
 from django.shortcuts import get_object_or_404  
@@ -64,27 +64,27 @@ class LogoutView(View):
         return redirect("main:home")
 
 
-# blod uploding
+# blog uploading
 class BlogPost(CreateView):
     model = Blog
     fields = ['author', 'title', 'content']
 
 
-# list od all blog
+# list of all blog
 class BlogList(ListView):
     paginate_by = 5
     queryset = Blog.objects.order_by('-created_at')
 
 
-#List of all Authoer detils 
+#List of all author 
 class AuthorList(ListView):
     queryset = Author.objects.all()
 
 
-class Comments(CreateView):
-    model = Comments
+class Comment(CreateView):
+    model = Comment
     fields =['comment']
-    success_url='/blog/'  #it's used for temporary
+    # success_url="/blog/"
 
     def form_valid(self, form):
         blog = get_object_or_404(Blog, pk=self.kwargs['pk'])
