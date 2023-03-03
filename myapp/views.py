@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView, View
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from myapp.form import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -65,18 +66,23 @@ class LogoutView(View):
         return redirect("main:home")
 
 
-# blod uploding
+# blog uploading
 class BlogPost(CreateView):
     model = Blog
     fields = ['author', 'title', 'content']
 
 
-# list od all blog
+# list of all blog
 class BlogList(ListView):
     paginate_by = 5
     queryset = Blog.objects.order_by('-created_at')
 
 
-#List of all Authoer detils 
+#List of all author
 class AuthorList(ListView):
     queryset = Author.objects.all()
+
+
+#Blog details
+class BlogDetail(DetailView):
+    model= Blog
