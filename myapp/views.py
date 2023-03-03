@@ -84,5 +84,5 @@ class AuthorList(ListView):
 
 
 #Blog details
-class BlogDetails(DetailView):
+class BlogDetail(DetailView):
     model= Blog
