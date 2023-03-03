@@ -32,6 +32,8 @@ class Blog(BaseModel):
 
     def get_absolute_url(self):
         return reverse('main:bloglist')
+    class Meta:
+        ordering = ['-created_at']
 
 
 # comment upload
@@ -43,7 +45,7 @@ class Comment(BaseModel):
         return f"{self.blog.author} - {self.blog.title} "
     
     def get_absolute_url(self):
-        return reverse('main:bloglist')
+        return reverse('main:blogdetails',kwargs={"pk": self.blog.id})
     
     class Meta:
         ordering = ['-created_at']

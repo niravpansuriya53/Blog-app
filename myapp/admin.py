@@ -13,7 +13,6 @@ class BlogAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'created_at')
     inlines = (CommentInline,)
 
-
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('short_comment', 'blog', 'created_at')

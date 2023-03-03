@@ -3,10 +3,19 @@
 {% block content %}
 <div class="index_box">
     <ul>
-        <li><a href=" {% url '' object.author.id %}">{{ object.author}}</a></li>
+        <li><a href=" {% url 'main:authordetails' object.author.id %}">{{ object.author}}</a></li>
         <li> {{ object.title}}</li>
         <li> {{ object.content}}</li>
     </ul> 
-    - <b>{{object.created_at | date}}</b>
+    - <b>{{object.created_at | date}}</b><br><br>
+
+    <h3 style="color:green;"> Comments</h3>
+    <div class="comment" style="background-color: white;">
+        {% for blog in blog.blog.all %} 
+            <li style="color: grey;"> <b style="font-size:30px ;">{{blog.comment}}</b> -- {{blog.created_at|date}}</li>
+        {% endfor %}
+    </div>
+        <button class="btn btn-primary" type="submit"><a href="{% url 'main:comment' object.id %}">Comment</a></button>
 </div>
+
 {% endblock content %}

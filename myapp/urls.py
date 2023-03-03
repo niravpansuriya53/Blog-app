@@ -1,6 +1,5 @@
 from django.urls import path
 from myapp import views
-from django.contrib.auth.decorators import login_required
 
 
 app_name = "main"
@@ -14,4 +13,5 @@ urlpatterns = [
     path("blog/post/", views.BlogPost.as_view(), name="postblog"),
     path("blog/<int:pk>/", views.BlogDetail.as_view(), name="blogdetails"),
     path("blogs/<int:pk>/", views.AuthorDetail.as_view(), name="authordetails"),
+    path("blogs/<int:pk>/create/", views.Comment.as_view(), name="comment"),
 ]  
