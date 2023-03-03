@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="index_box">
+    <ul>
+        <li><a href=" {% url '' object.author.id %}">{{ object.author}}</a></li>
+        <li> {{ object.title}}</li>
+        <li> {{ object.content}}</li>
+    </ul> 
+    - <b>{{object.created_at | date}}</b>
+</div>
+{% endblock content %}

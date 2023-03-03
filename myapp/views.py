@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView, View
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from myapp.form import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
@@ -77,7 +78,7 @@ class BlogList(ListView):
     queryset = Blog.objects.order_by('-created_at')
 
 
-#List of all author 
+#List of all author
 class AuthorList(ListView):
     queryset = Author.objects.all()
 
@@ -93,3 +94,6 @@ class Comment(CreateView):
         return super().form_valid(form)
 class AuthorDetails(DetailView):
     model= Author
+#Blog details
+class BlogDetail(DetailView):
+    model= Blog
