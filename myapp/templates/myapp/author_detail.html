@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="index_box">
+    <ul>
+        <li> <b>{{object.name}}</b></li>
+        <li>{{object.brithdate}}</li>
+        <li>{{object.about_author}}</li>
+    </ul>
+
+    {% for blog in author.blogs.all %}
+    <ul>
+        <li> <biv class='name_size'>{{blog.title}}</biv>   -- {{blog.created_at | date}}</li>
+    </ul>
+    {% endfor %}
+</div>
+{% endblock content %}
