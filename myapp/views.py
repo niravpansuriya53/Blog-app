@@ -5,6 +5,7 @@ from myapp.form import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.views.generic.edit import CreateView
+from django.views.generic.detail import DetailView
 from myapp.models import Author, Blog, Comment
 from django.contrib.auth.views import LoginView
 from django.urls import reverse
@@ -90,3 +91,5 @@ class Comment(CreateView):
         blog = get_object_or_404(Blog, pk=self.kwargs['pk'])
         form.instance.blog = blog
         return super().form_valid(form)
+class AuthorDetails(DetailView):
+    model= Author
