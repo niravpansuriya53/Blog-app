@@ -40,7 +40,7 @@ class Comment(BaseModel):
     comment = models.TextField()
 
     def __str__(self):
-        return f"{self.blog.author} - {self.blog.title}  "
+        return f"{self.blog.author} - {self.blog.title} "
     
     def get_absolute_url(self):
         return reverse('main:bloglist')

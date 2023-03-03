@@ -11,6 +11,8 @@ from myapp.models import Author, Blog, Comment
 from django.contrib.auth.views import LoginView
 from django.urls import reverse
 from django.shortcuts import get_object_or_404  
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 # home page view
@@ -67,6 +69,7 @@ class LogoutView(View):
 
 
 # blog uploading
+@method_decorator(login_required, name='dispatch')
 class BlogPost(CreateView):
     model = Blog
     fields = ['author', 'title', 'content']
@@ -83,16 +86,16 @@ class AuthorList(ListView):
     queryset = Author.objects.all()
 
 
+@method_decorator(login_required, name='dispatch')
 class Comment(CreateView):
     model = Comment
     fields =['comment']
-    # success_url="/blog/"
-
+    
     def form_valid(self, form):
         blog = get_object_or_404(Blog, pk=self.kwargs['pk'])
         form.instance.blog = blog
         return super().form_valid(form)
-class AuthorDetails(DetailView):
+class AuthorDetail(DetailView):
     model= Author
 #Blog details
 class BlogDetail(DetailView):

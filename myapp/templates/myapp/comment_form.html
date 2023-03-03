@@ -8,12 +8,9 @@
 
 {% block content %}
 <div class="container py-5" id="login">
-    <h1> {{commets.blog.id}}</h1>
     <form method="POST">
       {% csrf_token %}
       {{ form.as_p}}
-
-      
       <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 </div>

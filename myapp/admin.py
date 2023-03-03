@@ -1,11 +1,6 @@
 from django.contrib import admin
 from myapp.models import Author, Blog, Comment
 
-<<<<<<< HEAD
-admin.site.register(Author)
-admin.site.register(Blog)
-admin.site.register(Comment)
-=======
 
 class CommentInline(admin.TabularInline):
     model = Comment
@@ -29,4 +24,3 @@ class CommentAdmin(admin.ModelAdmin):
         return obj.comment[:75]
 
 admin.site.register(Author)
->>>>>>> main
