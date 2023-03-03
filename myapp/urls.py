@@ -11,6 +11,7 @@ urlpatterns = [
     path("login/", views.CustomLoginView.as_view(), name="login"),
     path("logout/", views.LogoutView.as_view(), name="logout"),
     path("blog/blogger/", views.AuthorList.as_view(), name="authorlist"),
-    path("blog/post/", login_required(views.BlogPost.as_view()), name="postblog"),
+    path("blog/post/", views.BlogPost.as_view(), name="postblog"),
     path("blog/<int:pk>/", views.BlogDetail.as_view(), name="blogdetails"),
+    path("blogs/<int:pk>/", views.AuthorDetail.as_view(), name="authordetails"),
 ]  

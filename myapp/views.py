@@ -4,13 +4,15 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from myapp.form import UserRegisterForm
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
-from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView
-from myapp.models import Author, Blog
+from django.views.generic.detail import DetailView
+from myapp.models import Author, Blog, Comment
 from django.contrib.auth.views import LoginView
 from django.urls import reverse
+from django.shortcuts import get_object_or_404  
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 # home page view
@@ -67,6 +69,7 @@ class LogoutView(View):
 
 
 # blog uploading
+@method_decorator(login_required, name='dispatch')
 class BlogPost(CreateView):
     model = Blog
     fields = ['author', 'title', 'content']
@@ -83,6 +86,17 @@ class AuthorList(ListView):
     queryset = Author.objects.all()
 
 
+@method_decorator(login_required, name='dispatch')
+class Comment(CreateView):
+    model = Comment
+    fields =['comment']
+    
+    def form_valid(self, form):
+        blog = get_object_or_404(Blog, pk=self.kwargs['pk'])
+        form.instance.blog = blog
+        return super().form_valid(form)
+class AuthorDetail(DetailView):
+    model= Author
 #Blog details
 class BlogDetail(DetailView):
     model= Blog
