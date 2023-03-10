@@ -10,10 +10,13 @@ on:
 
 jobs:
   build:
-    runs-on: MacOS-latest
+    runs-on: MacOS
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Run a one-line script
         run: echo Hello, world!
+
+      - name: Run Tests
+        run: python manage.py test myapp
